@@ -50,9 +50,6 @@ public class Action extends HttpServlet {
 		System.out.println("Scheme: " + request.getScheme());
 		System.out.println("Server Name: " + request.getServerName());
 		System.out.println("Server Port: " + request.getServerPort());
-		
-		/*Just a test*/
-		
 		System.out.println("Servlet Path: " + request.getServletPath());
 		System.out.println("Servlet Context: " + request.getServletContext());
 		System.out.println("Session: " + request.getSession());
