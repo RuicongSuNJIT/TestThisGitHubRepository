@@ -28,8 +28,6 @@ public class Action extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
-		int i = ~1;
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 		System.out.println("Content Length: " + request.getContentLength());
 		System.out.println("Content Type: " + request.getContentType());
