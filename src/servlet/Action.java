@@ -53,5 +53,6 @@ public class Action extends HttpServlet {
 		System.out.println("Servlet Context: " + request.getServletContext());
 		System.out.println("Session: " + request.getSession());
 		System.out.println("User Principal: " + request.getUserPrincipal());
+		// 456
 	}
 }
