@@ -28,7 +28,6 @@ public class Action extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// 123
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 		System.out.println("Content Length: " + request.getContentLength());
 		System.out.println("Content Type: " + request.getContentType());
@@ -54,6 +53,5 @@ public class Action extends HttpServlet {
 		System.out.println("Servlet Context: " + request.getServletContext());
 		System.out.println("Session: " + request.getSession());
 		System.out.println("User Principal: " + request.getUserPrincipal());
-		// 456
 	}
 }
