@@ -6,7 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="Action" method="get">
+	<form action="login" method="get">
 		user:
 		<input name="name" type="text" />
 		pass:
