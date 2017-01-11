@@ -1,21 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<%@include file="/common/head.jsp"%>
+<link href="<c:url value="/css/root/index.css"/>" type="text/css" rel="stylesheet" />
 </head>
 <body>
-	<form action="login" method="get">
-		user:
-		<input name="name" type="text" />
-		pass:
-		<input name="pass" type="password">
-		<input type="submit" value="OK" />
-	</form>
-	<script type="text/javascript">
-		var a = 10;
-		alert(a);
-	</script>
+	<div class="top">
+		<div class="brand inline left">Share</div>
+		<div class="top-login-signup inline right">
+			<form style="display: inline" action="login" method="get">
+				<input name="name" type="text" placeholder="Username" />
+				<input name="pass" type="password" placeholder="Password">
+				<input type="submit" value="Log In" />
+			</form>
+			<button onclick="toRegister()">Sign Up</button>
+		</div>
+	</div>
 </body>
+<script type="text/javascript">
+	function toRegister() {
+		window.location.href = "register.jsp";
+	}
+</script>
 </html>

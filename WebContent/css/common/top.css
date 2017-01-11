@@ -1,0 +1,21 @@
+@CHARSET "UTF-8";
+
+.top {
+	background: #000000;
+	color: #ffffff;
+	height: 35px;
+	padding-bottom: 16px;
+	padding-top: 12px;
+}
+
+.brand {
+	margin-left: 20px;
+	font-size: 28px;
+	font-family: cursive;
+	font-weight: bold;
+}
+
+.top-login-signup {
+	margin-top: 7px;
+	margin-right: 20px;
+}

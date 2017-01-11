@@ -7,3 +7,17 @@
 .form-content {
 	width: 300px;
 }
+
+input {
+	margin-bottom: 20px;
+}
+
+input[type="text"] {
+	width: 95%;
+	height: 25px;
+}
+
+input[type="password"] {
+	width: 95%;
+	height: 25px;
+}
