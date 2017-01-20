@@ -23,6 +23,7 @@ public class DoQuery {
 			queryPasswordStat.setString(1, username);
 
 			rs = queryPasswordStat.executeQuery();
+			rs.next();
 			password = rs.getString("password");
 			System.out.println(password);
 		} catch (SQLException e) {
