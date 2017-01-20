@@ -1,4 +1,4 @@
-package module;
+package module.connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,17 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ConnectionOperation {
-	private static final String URL = "jdbc:mysql://localhost:3306/share";
-	private static final String USER = "root";
-	private static final String PASS = "l19921016";
-
 	// getConnection(),returns a connection object.
 	public static Connection getConnection() {
 		Connection conn;
 
 		// load the jdbc_mysql driver
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName(DBConstant.DRIVER);
 		} catch (ClassNotFoundException e) {
 			System.out.println("mysql driver cannot be found!");
 			e.printStackTrace();
@@ -25,14 +21,16 @@ public class ConnectionOperation {
 
 		// connect to db,and get a conn object
 		try {
-			conn = DriverManager.getConnection(URL, USER, PASS);
+			conn = DriverManager.getConnection(DBConstant.URL, DBConstant.USER,
+					DBConstant.PASS);
 		} catch (SQLException e) {
 			System.out.println("cannot connect to db!");
 			e.printStackTrace();
 			return null;
 		}
-		if(conn!=null)
-			System.out.printf("connect to db successfully:%nurl=%s",URL);
+		if (conn != null)
+			System.out.printf("connect to db successfully:%nurl=%s",
+					DBConstant.URL);
 		return conn;
 	}
 
