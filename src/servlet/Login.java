@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import module.DoQuery;
+import user.UserControl;
 
 /**
  * Servlet implementation class Login
@@ -30,8 +30,7 @@ public class Login extends HttpServlet {
 		// TODO Auto-generated method stub
 		String username = request.getParameter("name");
 		String password = request.getParameter("pass");
-		String passwordInDB = DoQuery.getPassword(username);
-		if (password.equals(passwordInDB)) {
+		if (UserControl.login(username, password)) {
 			request.getRequestDispatcher("/success.jsp").forward(request, response);
 		} else {
 			request.getRequestDispatcher("/register.jsp").forward(request, response);

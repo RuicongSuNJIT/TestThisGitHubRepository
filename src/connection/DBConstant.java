@@ -1,4 +1,4 @@
-package module.connection;
+package connection;
 
 public class DBConstant {
 	public static final String URL = "jdbc:mysql://localhost:3306/share";
