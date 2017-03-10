@@ -2,4 +2,36 @@
 
 body {
 	margin: 0 0;
+	display: block;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box; /* Firefox */
+	-webkit-box-sizing: border-box; /* Safari */
+	background-color: #f8f8f8
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.individual {
+	
+}
+
+.individual::before {
+	display: table;
+	content: "";
+}
+
+.individual::after {
+	display: table;
+	clear: both;
+	content: "";
+}
+
+ul.no-mark {
+	list-style-type: none;
 }

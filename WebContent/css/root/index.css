@@ -4,10 +4,51 @@
 	display: inline;
 }
 
-.left {
-	float: left;
+.main-content {
+	max-width: 1012px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
 }
 
-.right {
-	float: right;
+.intro {
+	width: 250px;
+}
+
+.intro-content {
+	margin-right: 10px;
+	background-color: white;
+	border: 2px solid #f0f0f0;
+	background-color: white;
+}
+
+img.avatar {
+	width: 220px;
+	display: block;
+	margin: 10px auto;
+	border-radius: 3px;
+}
+
+.comment {
+	width: 762px;
+}
+
+.comment-content {
+	margin-left: 5px;
+	width: 100%;
+}
+
+h2.comment-title {
+	margin-top: 5px;
+}
+
+ul.comment-list {
+	padding: 0 0;
+}
+
+li.comment-item {
+	padding: 5px;
+	background-color: white;
+	border: 2px solid #f0f0f0;
+	background-color: white;
 }
