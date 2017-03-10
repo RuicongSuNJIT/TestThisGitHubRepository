@@ -40,6 +40,11 @@ img.avatar {
 
 h2.comment-title {
 	margin-top: 5px;
+	display: inline-block;
+}
+
+.new {
+	width: 20px;
 }
 
 ul.comment-list {

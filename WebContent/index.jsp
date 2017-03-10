@@ -13,10 +13,10 @@
 			<div class="brand  left">Share</div>
 			<div class="login-signup  right">
 				<div class="left">
-					<form action="login" method="get">
-						<input name="name" type="text" placeholder="Username" />
-						<input name="pass" type="password" placeholder="Password">
-						<input type="submit" value="Log In" />
+					<form>
+						<input id="name" type="text" placeholder="Username" />
+						<input id="pass" type="password" placeholder="Password">
+						<input type="button" value="Log In" onclick="login()" />
 					</form>
 				</div>
 				<div class="right">
@@ -35,6 +35,9 @@
 			<div class="comment left">
 				<div class="comment-content">
 					<h2 class="comment-title">Your comment</h2>
+					<a href="">
+						<img class="new" src="<c:url value="/resource/New.jpg"/>" />
+					</a>
 					<ul class="comment-list no-mark">
 						<li class="comment-item" id="1">
 							abc<br /> def<br />
@@ -45,9 +48,25 @@
 		</div>
 	</div>
 </body>
+<%@include file="/common/jsInclude.jsp"%>
 <script type="text/javascript">
 	function toRegister() {
 		window.location.href = "register.jsp";
+	}
+
+	function login() {
+		$.ajax({
+			'url' : 'login',
+			'type' : 'get',
+			'data' : {
+				'name' : $("#name")[0].value,
+				'pass' : $("#pass")[0].value
+			},
+			'dataType' : 'json',
+			'success' : function(returnData) {
+
+			}
+		});
 	}
 </script>
 </html>
