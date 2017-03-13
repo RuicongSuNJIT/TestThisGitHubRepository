@@ -64,7 +64,7 @@
 			},
 			'dataType' : 'json',
 			'success' : function(returnData) {
-
+				alert(returnData['status']);
 			}
 		});
 	}
