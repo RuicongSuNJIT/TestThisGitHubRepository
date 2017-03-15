@@ -27,7 +27,7 @@
 		</div>
 	</div>
 </body>
-<%@include file="/common/jsInclude.jsp"%>
+<%@include file="/common/js_include.jsp"%>
 <script type="text/javascript">
 	function toRegister() {
 		window.location.href = "register.jsp";

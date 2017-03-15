@@ -17,7 +17,7 @@
 		</form>
 	</div>
 </body>
-<%@include file="/common/jsInclude.jsp"%>
+<%@include file="/common/js_include.jsp"%>
 <script type="text/javascript">
 	$('#open').on('click', function() {
 		$('#file').trigger('click');
