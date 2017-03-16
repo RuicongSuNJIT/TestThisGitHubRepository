@@ -81,14 +81,14 @@ public class UploadFile extends HttpServlet {
 		for (Part file : files) {
 			// the return of file.getContentType() will be like this:
 			// "image/jpeg"
-			String str = file.getContentType();
+			String str = file.getSubmittedFileName();
 
 			// get the extensive name of upload files
-			String ext = "." + str.substring(str.lastIndexOf("/") + 1);
+			String ext = str.substring(str.lastIndexOf("."), str.length());
 
 			// the filename is combination of timeStamp and file type
 			String filename = SavingFolder.toString() + File.separator
-					+ new SimpleDateFormat("yyyymmddhhmmss").format(new Date()) + ext;
+					+ new SimpleDateFormat("yyyymmddhhmmss").format(new Date())+Long.toString(System.currentTimeMillis()) + ext;
 
 			// write the file into server disk
 			file.write(filename);
@@ -96,11 +96,11 @@ public class UploadFile extends HttpServlet {
 			
 			//set the fileToPath 
 			fileToPath.put(file.getSubmittedFileName(), filename);
-
 		}
 		
 		//set the session attributes
 		session.setAttribute("fileToPath", fileToPath);
+		System.out.println("up load completed");
 
 
 		obj.put("status", "OK");
