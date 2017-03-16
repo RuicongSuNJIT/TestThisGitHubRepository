@@ -14,6 +14,7 @@
 	<div>
 		<form>
 			<input id="comment" type="text" />
+			<input type="button" value="Submit" onclick="newComment()"/>
 			<input id="open" type="button" value="Open" />
 			<input id="file" type="file" accept="image/*" style="display: none"
 				multiple="multiple" onchange="upload()" />
@@ -74,7 +75,21 @@
 			},
 			'dataType' : 'json',
 			'success' : function(data) {
-				alert(data.name);
+				alert(data.status);
+			}
+		});
+	}
+	
+	function newComment() {
+		$.ajax({
+			'url' : 'newComment',
+			'type' : 'POST',
+			'data' : {
+				'comment' : $("#comment")[0].value
+			},
+			'dataType' : 'json',
+			'success' : function(data) {
+				alert(data.status);
 			}
 		});
 	}
