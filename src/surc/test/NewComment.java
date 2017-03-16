@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
-
 /**
  * Servlet implementation class NewComment
  */
@@ -34,9 +32,11 @@ public class NewComment extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("application/json; charset=UTF-8");
 
+		// To submit the comment, you need to load the comment content by a
+		// parameter name "comment" first. Additionally, you need to add all the
+		// files into database as well, which still remain in session.
+
 		PrintWriter out = response.getWriter();
-		JSONObject obj = new JSONObject();
-		obj.put("status", "ok");
-		out.println(obj);
+		out.println("{\"status\":\"ok\"}");
 	}
 }
