@@ -25,13 +25,13 @@ import org.json.JSONObject;
 // a new annotation @MultipartConfig. So, the servlet has two annotations.
 @MultipartConfig
 @WebServlet("/example")
-public class Example extends HttpServlet {
+public class UploadFile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Example() {
+	public UploadFile() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
