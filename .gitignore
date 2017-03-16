@@ -4,5 +4,5 @@
 .settings
 *.MF
 
-testMySQL.jsp
-DBConstant.java
+/testMySQL.jsp
+/DBConstant.java
