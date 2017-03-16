@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -13,25 +15,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-
 import org.json.JSONObject;
 
 /**
- * Servlet implementation class FileUpload
+ * Servlet implementation class test
  */
-// Since I allow the user to upload multiple files at one time, we need to give
-// the servlet
-// a new annotation @MultipartConfig. So, the servlet has two annotations.
 @MultipartConfig
-@WebServlet("/example")
-public class Example extends HttpServlet {
+@WebServlet("/uploadFile")
+public class UploadFile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Example() {
+	public UploadFile() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -45,12 +44,10 @@ public class Example extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		JSONObject obj = new JSONObject();
 
-		// define the upload saving path
-		File SavingFolder = new File(this.getServletContext().getRealPath("/SavingFolder"));
-		// if the folder does not exist,make it
-		if (!SavingFolder.exists()) {
-			SavingFolder.mkdirs();
-		}
+		// get session instance
+		HttpSession session = request.getSession();
+		Map<String, String> fileToPath = new HashMap<>();
+		session.getAttribute("fileToPath");
 
 		// Use this segment to get the files.
 		Collection<Part> files = request.getParts();
@@ -73,22 +70,42 @@ public class Example extends HttpServlet {
 		// files. Although the user now can change the file filter to all files,
 		// we do not
 		// judge whether the file is an image or not.
-		for (Part file : files) {
-			System.out.println(file.getSubmittedFileName());
 
-			// get the type of upload files
-			String type = file.getContentType();
+		// define the upload saving path
+		File SavingFolder = new File(this.getServletContext().getRealPath("/SavingFolder"));
+		// if the folder does not exist,make it
+		if (!SavingFolder.exists()) {
+			SavingFolder.mkdirs();
+		}
+		// traverse each part and write it into disk
+		for (Part file : files) {
+			// the return of file.getContentType() will be like this:
+			// "image/jpeg"
+			String str = file.getContentType();
+
+			// get the extensive name of upload files
+			String ext = "." + str.substring(str.lastIndexOf("/") + 1);
+
 			// the filename is combination of timeStamp and file type
-			String filename = SavingFolder + File.separator + new SimpleDateFormat("yyyymmddhhmmss").format(new Date())
-					+ "." + type;
-			
-			//write the file into server disk
+			String filename = SavingFolder.toString() + File.separator
+					+ new SimpleDateFormat("yyyymmddhhmmss").format(new Date()) + ext;
+
+			// write the file into server disk
 			file.write(filename);
+			System.out.println(file.getSubmittedFileName() + "\nsaved as:" + filename);
+			
+			//set the fileToPath 
+			fileToPath.put(file.getSubmittedFileName(), filename);
 
 		}
+		
+		//set the session attributes
+		session.setAttribute("fileToPath", fileToPath);
+
 
 		obj.put("status", "OK");
 		out.println(obj);
+
 	}
 
 }
