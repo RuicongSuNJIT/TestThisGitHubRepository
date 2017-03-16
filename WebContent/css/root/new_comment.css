@@ -1,1 +1,31 @@
 @CHARSET "UTF-8";
+
+.image-container {
+	
+}
+
+.image-element {
+	width: 100px;
+	height: 100px;
+	display: inline-block;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+.image-element.delete-allowed {
+	position: relative;
+}
+
+.shortcut-image {
+	width: 100px;
+	display: block;
+	height: 100px;
+}
+
+.delete {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	top: 0px;
+	right: 0px;
+}
