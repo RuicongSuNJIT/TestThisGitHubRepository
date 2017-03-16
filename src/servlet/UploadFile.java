@@ -100,7 +100,6 @@ public class UploadFile extends HttpServlet {
 		
 		//set the session attributes
 		session.setAttribute("fileToPath", fileToPath);
-		System.out.println("up load completed");
 
 
 		obj.put("status", "OK");
