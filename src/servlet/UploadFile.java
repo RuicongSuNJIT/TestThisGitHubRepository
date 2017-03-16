@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -41,35 +42,21 @@ public class UploadFile extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setContentType("application/json;charset=utf-8");
+		
 		PrintWriter out = response.getWriter();
 		JSONObject obj = new JSONObject();
+		Collection<String> savingNames = new ArrayList<>();
 
 		// get session instance
 		HttpSession session = request.getSession();
-		Map<String, String> fileToPath = new HashMap<>();
-		session.getAttribute("fileToPath");
+		Map<String, String> fileToPath = (Map<String, String>) session.getAttribute("fileToPath");
+		if (fileToPath == null) {
+			fileToPath = new HashMap<String, String>();
+		}
 
 		// Use this segment to get the files.
 		Collection<Part> files = request.getParts();
-
-		// Use for each format to get every file. Instead output the file name,
-		// I need you
-		// to save the files in local position. And save the local url into
-		// session. Key
-		// is the file name and the value is the local path. Additionally, I
-		// think you need
-		// to give the file a new name based on the time stamp. For example,
-		// 'Image20170315195745' means the file is start writing to local disk
-		// at 19:57:45,
-		// on March/15/2017. For the extra name, you need to judge whether it is
-		// a jpg, gif
-		// or some other type. I have limited the default kind of file to be
-		// image, which
-		// means that when the open file dialog pop up, it will typically should
-		// only image
-		// files. Although the user now can change the file filter to all files,
-		// we do not
-		// judge whether the file is an image or not.
 
 		// define the upload saving path
 		File SavingFolder = new File(this.getServletContext().getRealPath("/SavingFolder"));
@@ -79,8 +66,7 @@ public class UploadFile extends HttpServlet {
 		}
 		// traverse each part and write it into disk
 		for (Part file : files) {
-			// the return of file.getContentType() will be like this:
-			// "image/jpeg"
+			// get the submitted file name
 			String str = file.getSubmittedFileName();
 
 			// get the extensive name of upload files
@@ -88,22 +74,19 @@ public class UploadFile extends HttpServlet {
 
 			// the filename is combination of timeStamp and file type
 			String filename = SavingFolder.toString() + File.separator
-					+ new SimpleDateFormat("yyyymmddhhmmss").format(new Date())+Long.toString(System.currentTimeMillis()) + ext;
+					+ new SimpleDateFormat("yyyymmddhhmmss").format(new Date())
+					+ Long.toString(System.currentTimeMillis()) + ext;
 
 			// write the file into server disk
 			file.write(filename);
 			System.out.println(file.getSubmittedFileName() + "\nsaved as:" + filename);
-			
-			//set the fileToPath 
+
+			// set the fileToPath
 			fileToPath.put(file.getSubmittedFileName(), filename);
+			savingNames.add(filename);
 		}
-		
-		//set the session attributes
-		session.setAttribute("fileToPath", fileToPath);
-		System.out.println("up load completed");
-
-
-		obj.put("status", "OK");
+		//key name has not change
+		obj.put("status", savingNames);// 返回文件名数组
 		out.println(obj);
 
 	}

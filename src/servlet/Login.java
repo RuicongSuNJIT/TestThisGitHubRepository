@@ -28,6 +28,7 @@ public class Login extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.setContentType("application/json;charset=utf-8");
 		String username = request.getParameter("name");
 		String password = request.getParameter("pass");
 		if (UserControl.login(username, password)) {
