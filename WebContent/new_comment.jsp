@@ -19,6 +19,11 @@
 				multiple="multiple" onchange="upload()"/>
 		</form>
 	</div>
+	
+	<div>
+		<div><img src="<c:url value="/resource/Avatar.jpg"/>"/></div>
+		<div><img src="<c:url value="/resource/Avatar.jpg"/>"/></div>
+	</div>
 </body>
 <%@include file="/common/js_include.jsp"%>
 <script type="text/javascript">

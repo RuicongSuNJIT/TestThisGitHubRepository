@@ -20,7 +20,7 @@
 				<div class="comment-content">
 					<h2 class="comment-title">Your comment</h2>
 					<a href="">
-						<img class="new" src="<c:url value="/resource/New.jpg"/>" />
+						<img class="new" src="<c:url value="/resource/New.png"/>" />
 					</a>
 					<ul class="comment-list no-mark">
 						<li class="comment-item" id="1">
