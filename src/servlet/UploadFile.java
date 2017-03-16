@@ -43,7 +43,7 @@ public class UploadFile extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("application/json;charset=utf-8");
-		
+		//
 		PrintWriter out = response.getWriter();
 		JSONObject obj = new JSONObject();
 		Collection<String> savingNames = new ArrayList<>();

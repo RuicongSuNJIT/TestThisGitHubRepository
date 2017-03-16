@@ -30,7 +30,7 @@ public class Register extends HttpServlet {
 	 */
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json;charset=utf-8");
-		
+		//
 		String username = request.getParameter("name");
 		String password = request.getParameter("password");
 		// String rePassword=request.getParameter("")
