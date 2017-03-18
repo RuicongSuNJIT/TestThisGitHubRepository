@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -20,7 +19,6 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 /**
  * Servlet implementation class test
