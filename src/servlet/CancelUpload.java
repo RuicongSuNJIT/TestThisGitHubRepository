@@ -50,6 +50,7 @@ public class CancelUpload extends HttpServlet {
 
 		// Remove from session list
 		HttpSession session=request.getSession();
+		@SuppressWarnings("unchecked")
 		Map<String, String> fileToPath=(Map<String, String>) session.getAttribute("fileToPath");
 		fileToPath.remove(filename);
 		
