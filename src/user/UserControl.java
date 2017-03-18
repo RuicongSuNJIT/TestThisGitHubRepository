@@ -1,6 +1,5 @@
 package user;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import bean.SessionBean;
