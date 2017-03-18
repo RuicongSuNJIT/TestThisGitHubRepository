@@ -38,10 +38,6 @@ public class CancelUpload extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// please add this segment to all your current servlets and your
-		// servlets creating in the future.
-		response.setContentType("application/json;charset=utf-8");
-
 		PrintWriter out = response.getWriter();
 		JSONObject obj = new JSONObject();
 

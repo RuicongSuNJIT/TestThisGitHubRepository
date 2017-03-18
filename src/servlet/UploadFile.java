@@ -15,7 +15,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import org.json.JSONArray;
@@ -42,18 +41,9 @@ public class UploadFile extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setContentType("application/json;charset=utf-8");
-		//
 		PrintWriter out = response.getWriter();
 		JSONArray arr=new JSONArray();
-
-		// get session instance
-		HttpSession session = request.getSession();
-		@SuppressWarnings("unchecked")
-		Map<String, String> fileToPath = (Map<String, String>) session.getAttribute("fileToPath");
-		if (fileToPath == null) {
-			fileToPath = new HashMap<String, String>();
-		}
+		Map<String,String> filePath=new HashMap<>();
 
 		// Use this segment to get the files.
 		Collection<Part> files = request.getParts();
@@ -81,9 +71,9 @@ public class UploadFile extends HttpServlet {
 			file.write(filename);
 			System.out.println(file.getSubmittedFileName() + "\nsaved as:" + filename);
 
-			// set the fileToPath
-			fileToPath.put(file.getSubmittedFileName(), filename);
+			// set the filename
 			arr.put(filename);
+			filePath.put(file.getSubmittedFileName(), filename);
 			
 		}
 		//return an array of filename

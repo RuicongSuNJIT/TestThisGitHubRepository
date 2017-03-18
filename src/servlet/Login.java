@@ -6,7 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import bean.SessionBean;
 import user.UserControl;
 
 /**
@@ -27,12 +29,19 @@ public class Login extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//
-		response.setContentType("application/json;charset=utf-8");
+		
 		String username = request.getParameter("name");
 		String password = request.getParameter("pass");
+		
+		
 		if (UserControl.login(username, password)) {
+			// get session instance
+			HttpSession session = request.getSession();
+			SessionBean user=(SessionBean) session.getAttribute("user");
+			if (user == null) {
+				user = UserControl.getSessionBean(username);
+			}
+			session.setAttribute("user", user);
 			request.getRequestDispatcher("/success.jsp").forward(request, response);
 		} else {
 			request.getRequestDispatcher("/register.jsp").forward(request, response);
