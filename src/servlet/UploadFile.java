@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -45,11 +47,11 @@ public class UploadFile extends HttpServlet {
 		response.setContentType("application/json;charset=utf-8");
 		//
 		PrintWriter out = response.getWriter();
-		JSONObject obj = new JSONObject();
-		Collection<String> savingNames = new ArrayList<>();
+		JSONArray arr=new JSONArray();
 
 		// get session instance
 		HttpSession session = request.getSession();
+		@SuppressWarnings("unchecked")
 		Map<String, String> fileToPath = (Map<String, String>) session.getAttribute("fileToPath");
 		if (fileToPath == null) {
 			fileToPath = new HashMap<String, String>();
@@ -83,11 +85,11 @@ public class UploadFile extends HttpServlet {
 
 			// set the fileToPath
 			fileToPath.put(file.getSubmittedFileName(), filename);
-			savingNames.add(filename);
+			arr.put(filename);
+			
 		}
-		//key name has not change
-		obj.put("status", savingNames);// 返回文件名数组
-		out.println(obj);
+		//return an array of filename
+		out.println(arr);
 
 	}
 
