@@ -14,7 +14,7 @@ import org.json.JSONObject;
 /**
  * Servlet implementation class CancelUpload
  */
-@WebServlet("/cancelUpload")
+@WebServlet("/example2")
 public class CancelUpload extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

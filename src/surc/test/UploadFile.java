@@ -24,7 +24,7 @@ import org.json.JSONObject;
 // the servlet
 // a new annotation @MultipartConfig. So, the servlet has two annotations.
 @MultipartConfig
-@WebServlet("/example")
+@WebServlet("/example1")
 public class UploadFile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
