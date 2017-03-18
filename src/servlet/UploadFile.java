@@ -19,6 +19,8 @@ import javax.servlet.http.Part;
 
 import org.json.JSONArray;
 
+import bean.SessionBean;
+
 /**
  * Servlet implementation class test
  */
@@ -73,9 +75,11 @@ public class UploadFile extends HttpServlet {
 
 			// set the filename
 			arr.put(filename);
-			filePath.put(file.getSubmittedFileName(), filename);
-			
+			filePath.put(file.getSubmittedFileName(), filename);		
 		}
+		
+		SessionBean user=(SessionBean) request.getSession().getAttribute("user");
+		user.setFilePath(filePath);
 		//return an array of filename
 		out.println(arr);
 

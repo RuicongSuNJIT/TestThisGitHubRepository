@@ -1,11 +1,13 @@
 package bean;
 
+import java.util.Map;
+
 public class SessionBean {
 	private String username;
 	private String nickname;
 	private int id;
 	private String avatar;
-	private String filePath;
+	private Map<String,String> filePath;
 	public SessionBean() {
 		super();
 	}
@@ -39,10 +41,10 @@ public class SessionBean {
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
 	}
-	public String getFilePath() {
+	public Map<String, String> getFilePath() {
 		return filePath;
 	}
-	public void setFilePath(String filePath) {
+	public void setFilePath(Map<String, String> filePath) {
 		this.filePath = filePath;
 	}
 	@Override
