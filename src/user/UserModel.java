@@ -10,36 +10,46 @@ import java.util.Map;
 import connection.ConnectionOperation;
 
 public class UserModel {
-	public static boolean login(String username, String password) {
-		final String QueryPassword = "select * from users where username=? and password=?";
-		PreparedStatement queryPasswordStat;
+	public static Map<String, String> login(String username, String password) {
+		final String QueryPassword = "select nickname,avatar from users where username=? and password=?";
+		PreparedStatement queryPasswordStat = null;
+		Map<String, String> map = new HashMap<>();
 
-		boolean result = false;
 		Connection conn = null;
 		ResultSet rs = null;
 		conn = ConnectionOperation.getConnection();
 		if (conn == null)
-			return false;
+			return null;
 		try {
 			queryPasswordStat = conn.prepareStatement(QueryPassword);
 			queryPasswordStat.setString(1, username);
 			queryPasswordStat.setString(2, password);
 
 			rs = queryPasswordStat.executeQuery();
-			result = rs.next();
-			rs.close();
+			if (rs == null) {
+				return null;
+			}
+			map.put(username, username);
+			map.put("nickname", rs.getString("nickname"));
+			map.put("avatar", rs.getString("avatar"));
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
-		return result;
+		return map;
 	}
 
 	public static boolean register(String username, String password, String email, String nickname) {
 		final String defaultAvatar = "/dinosaur/resource/avatar.jpg";
 		final String checkUsername = "select *from users where username=?";
 		final String addUsersSQL = "insert into users(username,password,email,nickname,avatar) values (?,?,?,?,?)";// 20170318
-		PreparedStatement addUserStat;
-		PreparedStatement checkUsernameStat;
+		PreparedStatement addUserStat = null;
+		PreparedStatement checkUsernameStat = null;
 		ResultSet rs = null;
 
 		Connection conn = null;
@@ -73,7 +83,7 @@ public class UserModel {
 	public static Map<String, String> getUser(String username) {
 		// TODO Auto-generated method stub
 		final String getSessionQuery = "select nickname,avatar from users where username=?";
-		PreparedStatement queryStat;
+		PreparedStatement queryStat = null;
 
 		Map<String, String> map = new HashMap<>();
 		Connection conn = null;

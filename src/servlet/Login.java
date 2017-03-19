@@ -38,17 +38,17 @@ public class Login extends HttpServlet {
 		JSONObject obj = new JSONObject();
 		String username = request.getParameter("name");
 		String password = request.getParameter("pass");
+		User user;
 
-		if (UserControl.login(username, password)) {
+		if ((user = UserControl.login(username, password)) != null) {
 			// get session instance
 			HttpSession session = request.getSession();
-			User user = UserControl.getUser(username);
 			user.setFilePath(new HashMap<String, String>());
 
 			session.setAttribute("user", user);
 			obj.put("status", "ok");
 		} else {
-			obj.put("status", "erro");
+			obj.put("status", "error");
 		}
 		pw.println(obj);
 	}
