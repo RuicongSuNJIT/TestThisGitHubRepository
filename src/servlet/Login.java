@@ -1,12 +1,17 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.json.JSONObject;
 
 import bean.User;
 import user.UserControl;
@@ -29,21 +34,22 @@ public class Login extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		PrintWriter pw = response.getWriter();
+		JSONObject obj = new JSONObject();
 		String username = request.getParameter("name");
 		String password = request.getParameter("pass");
 
 		if (UserControl.login(username, password)) {
 			// get session instance
 			HttpSession session = request.getSession();
-			User user = (User) session.getAttribute("user");
-			if (user == null) {
-				user = UserControl.getSessionBean(username);
-			}
+			User user = UserControl.getUser(username);
+			user.setFilePath(new HashMap<String, String>());
+
 			session.setAttribute("user", user);
-			request.getRequestDispatcher("/success.jsp").forward(request, response);
+			obj.put("status", "ok");
 		} else {
-			request.getRequestDispatcher("/register.jsp").forward(request, response);
+			obj.put("status", "erro");
 		}
+		pw.println(obj);
 	}
 }

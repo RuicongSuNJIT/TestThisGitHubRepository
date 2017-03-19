@@ -81,8 +81,8 @@ public class UploadFile extends HttpServlet {
 			// the filename is combination of timeStamp and file type
 			String filename = SavingFolder + File.separator + new SimpleDateFormat("yyyymmddhhmmss").format(new Date())
 					+ "." + type;
-			
-			//write the file into server disk
+
+			// write the file into server disk
 			file.write(filename);
 
 		}

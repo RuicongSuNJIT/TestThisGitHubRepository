@@ -45,7 +45,7 @@ public class UploadFile extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		JSONArray arr = new JSONArray();
 		User user = (User) request.getSession().getAttribute("user");
-		Map<String, String> filePath =user.getFilePath();
+		Map<String, String> filePath = user.getFilePath();
 
 		// Use this segment to get the files.
 		Collection<Part> files = request.getParts();
@@ -78,7 +78,6 @@ public class UploadFile extends HttpServlet {
 			filePath.put(file.getSubmittedFileName(), filename);
 		}
 
-		
 		user.setFilePath(filePath);
 		// return an array of filename
 		out.println(arr);
