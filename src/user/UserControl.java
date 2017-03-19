@@ -2,7 +2,7 @@ package user;
 
 import java.util.Map;
 
-import bean.SessionBean;
+import bean.User;
 
 public class UserControl {
 	public static boolean login(String username, String password) {
@@ -13,11 +13,11 @@ public class UserControl {
 		return UserModel.register(username, password, email,nickname);
 	}
 
-	public static SessionBean getSessionBean(String username) {
+	public static User getSessionBean(String username) {
 		Map<String,String> map=UserModel.getSessionBean(username);
 		String nickname=map.get("nickname");
 		String avatar=map.get("avatar");
-		SessionBean user=new SessionBean(username,nickname,avatar);
+		User user=new User(username,nickname,avatar);
 		return user;
 		
 	}

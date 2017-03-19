@@ -21,16 +21,14 @@ public class ConnectionOperation {
 
 		// connect to db,and get a conn object
 		try {
-			conn = DriverManager.getConnection(DBConstant.URL, DBConstant.USER,
-					DBConstant.PASS);
+			conn = DriverManager.getConnection(DBConstant.URL, DBConstant.USER, DBConstant.PASS);
 		} catch (SQLException e) {
 			System.out.println("cannot connect to db!");
 			e.printStackTrace();
 			return null;
 		}
 		if (conn != null)
-			System.out.printf("connect to db successfully:%nurl=%s",
-					DBConstant.URL);
+			System.out.printf("connect to db successfully:%nurl=%s", DBConstant.URL);
 		return conn;
 	}
 

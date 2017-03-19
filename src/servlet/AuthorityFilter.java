@@ -25,22 +25,24 @@ public class AuthorityFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		
+
 		// initial settings
 		response.setContentType("application/json;charset=utf-8");
-		final String loginPage="/login";
-		final String registerPage="/register";
+		final String loginPage = "/login";
+		final String registerPage = "/register";
 
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession(true);
 		// get the page which the user request for
 		String requestPath = req.getServletPath();
-		//if the user did not login and request path is neither login nor register,dispatch to login page
-		if(!(session.getAttribute("user")==null)&&!requestPath.endsWith(loginPage)&&!requestPath.endsWith(registerPage)){
+		// if the user did not login and request path is neither login nor
+		// register,dispatch to login page
+		if (!(session.getAttribute("user") == null) && !requestPath.endsWith(loginPage)
+				&& !requestPath.endsWith(registerPage)) {
 			request.getRequestDispatcher(loginPage).forward(request, response);
 		}
-		//let it go
-		else{
+		// let it go
+		else {
 			chain.doFilter(request, response);
 		}
 

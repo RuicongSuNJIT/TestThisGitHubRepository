@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.SessionBean;
+import bean.User;
 import user.UserControl;
 
 /**
@@ -29,15 +29,14 @@ public class Login extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		String username = request.getParameter("name");
 		String password = request.getParameter("pass");
-		
-		
+
 		if (UserControl.login(username, password)) {
 			// get session instance
 			HttpSession session = request.getSession();
-			SessionBean user=(SessionBean) session.getAttribute("user");
+			User user = (User) session.getAttribute("user");
 			if (user == null) {
 				user = UserControl.getSessionBean(username);
 			}

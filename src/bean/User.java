@@ -2,16 +2,16 @@ package bean;
 
 import java.util.Map;
 
-public class SessionBean {
+public class User {
 	private String username;
 	private String nickname;
 	private int id;
 	private String avatar;
 	private Map<String,String> filePath;
-	public SessionBean() {
+	public User() {
 		super();
 	}
-	public SessionBean(String username, String nickname,String avatar) {
+	public User(String username, String nickname,String avatar) {
 		super();
 		this.username = username;
 		this.nickname = nickname;

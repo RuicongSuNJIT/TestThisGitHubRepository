@@ -19,7 +19,7 @@ import javax.servlet.http.Part;
 
 import org.json.JSONArray;
 
-import bean.SessionBean;
+import bean.User;
 
 /**
  * Servlet implementation class test
@@ -44,8 +44,9 @@ public class UploadFile extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		JSONArray arr=new JSONArray();
-		Map<String,String> filePath=new HashMap<>();
+		JSONArray arr = new JSONArray();
+		User user = (User) request.getSession().getAttribute("user");
+		Map<String, String> filePath =user.getFilePath();
 
 		// Use this segment to get the files.
 		Collection<Part> files = request.getParts();
@@ -75,12 +76,12 @@ public class UploadFile extends HttpServlet {
 
 			// set the filename
 			arr.put(filename);
-			filePath.put(file.getSubmittedFileName(), filename);		
+			filePath.put(file.getSubmittedFileName(), filename);
 		}
+
 		
-		SessionBean user=(SessionBean) request.getSession().getAttribute("user");
 		user.setFilePath(filePath);
-		//return an array of filename
+		// return an array of filename
 		out.println(arr);
 
 	}

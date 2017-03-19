@@ -35,8 +35,8 @@ public class Register extends HttpServlet {
 		String email = request.getParameter("email");
 		// new comment 2017/03/18
 		String nickname = request.getParameter("nickname");
-		
-		if (UserControl.register(username, password, email,nickname))
+
+		if (UserControl.register(username, password, email, nickname))
 			request.getRequestDispatcher("/success.jsp").forward(request, response);
 		else
 			request.getRequestDispatcher("/register.jsp").forward(request, response);

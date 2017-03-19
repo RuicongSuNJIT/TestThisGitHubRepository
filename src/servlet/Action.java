@@ -26,8 +26,8 @@ public class Action extends HttpServlet {
 	 *      response)
 	 */
 	@Override
-	protected void service(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 		System.out.println("Content Length: " + request.getContentLength());
 		System.out.println("Content Type: " + request.getContentType());
