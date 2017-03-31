@@ -45,7 +45,6 @@ public class Login extends HttpServlet {
 			// get session instance
 			HttpSession session = request.getSession();
 			user.setFilePath(new HashMap<String, String>());
-
 			session.setAttribute("user", user);
 			obj.put("status", "ok");
 		} else {
