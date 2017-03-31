@@ -11,28 +11,17 @@
 </head>
 <body>
 	<%@include file="/common/top.jsp"%>
-	<div>
+	<div style="margin-left: 10px; margin-top: 10px;">
 		<form>
-			<input id="comment" type="text" />
-			<input type="button" value="Submit" onclick="newComment()"/>
+			<input id="comment" type="text" style="width: 900px; height: 400px;" />
+			<br />
+			<input type="button" value="Submit" onclick="newComment()" />
 			<input id="open" type="button" value="Open" />
 			<input id="file" type="file" accept="image/*" style="display: none"
 				multiple="multiple" onchange="upload()" />
 		</form>
 	</div>
-
-	<div id="imageContainer" style="margin-top: 10px;">
-		<div class="image-element">
-			<img class="shortcut-image"
-				src="<c:url value="/resource/Avatar.jpg"/>" />
-		</div>
-		<div class="image-element delete-allowed">
-			<img class="shortcut-image"
-				src="<c:url value="/resource/Avatar.jpg"/>" />
-			<img class="delete" src="<c:url value="/resource/Delete.png"/>"
-				onclick="deleteImage(this)" />
-		</div>
-	</div>
+	<div id="imageContainer" style="margin-top: 10px;"></div>
 </body>
 <%@include file="/common/js_include.jsp"%>
 <script src="<c:url value="/js/template.js"/>"></script>
@@ -62,7 +51,6 @@
 				'Avatar.jpg');
 		div.append(image);
 		div.append(del);
-		$('#imageContainer')[0].append(div);
 	});
 
 	function deleteImage(image) {
@@ -79,7 +67,7 @@
 			}
 		});
 	}
-	
+
 	function newComment() {
 		$.ajax({
 			'url' : 'newComment',
