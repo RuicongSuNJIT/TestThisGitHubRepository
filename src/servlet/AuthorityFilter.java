@@ -28,8 +28,8 @@ public class AuthorityFilter implements Filter {
 
 		// initial settings
 		response.setContentType("application/json;charset=utf-8");
-		final String loginPage = "/login";
-		final String registerPage = "/register";
+		final String loginPage = "/login.jsp";
+		final String registerPage = "/register.jsp";
 
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession(true);
@@ -37,7 +37,7 @@ public class AuthorityFilter implements Filter {
 		String requestPath = req.getServletPath();
 		// if the user did not login and request path is neither login nor
 		// register,dispatch to login page
-		if (!(session.getAttribute("user") == null) && !requestPath.endsWith(loginPage)
+		if (session.getAttribute("user") == null && !requestPath.endsWith(loginPage)
 				&& !requestPath.endsWith(registerPage)) {
 			request.getRequestDispatcher(loginPage).forward(request, response);
 		}
