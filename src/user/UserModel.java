@@ -45,7 +45,7 @@ public class UserModel {
 	}
 
 	public static boolean register(String username, String password, String email, String nickname) {
-		final String defaultAvatar = "/dinosaur/resource/avatar.jpg";
+		final String defaultAvatar = core.Constants.DEFAULT_AVATAR;
 		final String checkUsername = "select username from users where username=?";
 		final String addUsersSQL = "insert into users(username,password,email,nickname,avatar) values (?,?,?,?,?)";// 20170318
 		PreparedStatement addUserStat = null;
