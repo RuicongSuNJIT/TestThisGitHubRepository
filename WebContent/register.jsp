@@ -69,7 +69,11 @@
 			},
 			'dataType' : 'json',
 			'success' : function(returnData) {
-				alert(returnData['status']);
+				if (returnData['status'] == 'success') {
+					window.location.href = "index.jsp";
+				} else {
+					alert("Username is duplicated!");
+				}
 			}
 		});
 	}
