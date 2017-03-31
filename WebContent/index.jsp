@@ -19,7 +19,7 @@
 			<div class="comment left">
 				<div class="comment-content">
 					<h2 class="comment-title">Your comment</h2>
-					<a href="">
+					<a href="new_comment.jsp">
 						<img class="new" src="<c:url value="/resource/New.png"/>" />
 					</a>
 					<ul class="comment-list no-mark">
