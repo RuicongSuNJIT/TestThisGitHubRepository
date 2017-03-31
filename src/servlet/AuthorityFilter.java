@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class Test
  */
-@WebFilter(filterName = "authorityFilter", urlPatterns = { "/*" })
+@WebFilter(filterName = "authorityFilter", urlPatterns = { "*.jsp" })
 public class AuthorityFilter implements Filter {
 
 	/**
@@ -26,7 +26,7 @@ public class AuthorityFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-
+		System.out.println("filtered");
 		// initial settings
 		response.setContentType("application/json;charset=utf-8");
 		final String loginPage = "/login.jsp";
@@ -40,8 +40,9 @@ public class AuthorityFilter implements Filter {
 		// register,dispatch to login page
 		if (session.getAttribute("user") == null && !requestPath.endsWith(loginPage)
 				&& !requestPath.endsWith(registerPage)) {
-			HttpServletResponse resp=(HttpServletResponse)response;
+			HttpServletResponse resp = (HttpServletResponse) response;
 			resp.sendRedirect("login.jsp");
+
 		}
 		// let it go
 		else {
