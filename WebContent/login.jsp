@@ -13,7 +13,7 @@
 			<h2>Welcome to use Share</h2>
 		</div>
 		<div class="form-content" style="width: 300px">
-			<form action="register" method="post">
+			<form>
 				<input type="text" id="name" placeholder="Name" />
 				<br />
 				<input type="password" id="pass" placeholder="Password" />

@@ -41,7 +41,7 @@
 	function login() {
 		$.ajax({
 			'url' : 'login',
-			'type' : 'get',
+			'type' : 'post',
 			'data' : {
 				'name' : $("#name")[0].value,
 				'pass' : $("#pass")[0].value
