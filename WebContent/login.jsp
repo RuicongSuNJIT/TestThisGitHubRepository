@@ -14,15 +14,11 @@
 		</div>
 		<div class="form-content" style="width: 300px">
 			<form action="register" method="post">
-				<input type="text" name="name" placeholder="Name" />
+				<input type="text" id="name" placeholder="Name" />
 				<br />
-				<input type="password" name="password" placeholder="Password" />
+				<input type="password" id="pass" placeholder="Password" />
 				<br />
-				<input type="password" placeholder="Confirm password" />
-				<br />
-				<input type="text" name="email" placeholder="E-mail" />
-				<br />
-				<input type="submit" value="Register" />
+				<input type="button" value="Log In" onclick="login()" />
 			</form>
 		</div>
 	</div>
@@ -31,6 +27,21 @@
 <script type="text/javascript">
 	function toRegister() {
 		window.location.href = "register.jsp";
+	}
+	
+	function login() {
+		$.ajax({
+			'url' : 'login',
+			'type' : 'post',
+			'data' : {
+				'name' : $("#name")[0].value,
+				'pass' : $("#pass")[0].value
+			},
+			'dataType' : 'json',
+			'success' : function(returnData) {
+				alert(returnData['status']);
+			}
+		});
 	}
 </script>
 </html>
