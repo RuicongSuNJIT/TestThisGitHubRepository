@@ -42,6 +42,7 @@ public class UploadFile extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setContentType("application/json;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		JSONArray arr = new JSONArray();
 		User user = (User) request.getSession().getAttribute("user");

@@ -28,7 +28,7 @@ public class AuthorityFilter implements Filter {
 			throws IOException, ServletException {
 		System.out.println("filtered");
 		// initial settings
-		response.setContentType("application/json;charset=utf-8");
+		
 		final String loginPage = "/login.jsp";
 		final String registerPage = "/register.jsp";
 

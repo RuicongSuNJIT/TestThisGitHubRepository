@@ -34,6 +34,7 @@ public class Login extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setContentType("application/json;charset=utf-8");
 		PrintWriter pw = response.getWriter();
 		JSONObject obj = new JSONObject();
 		String username = request.getParameter("name");

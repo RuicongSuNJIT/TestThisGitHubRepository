@@ -29,6 +29,7 @@ public class Register extends HttpServlet {
 	 *      response)
 	 */
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String username = request.getParameter("name");
 		String password = request.getParameter("password");
 		// String rePassword=request.getParameter("")
