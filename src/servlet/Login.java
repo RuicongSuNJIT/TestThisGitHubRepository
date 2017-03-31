@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.json.JSONObject;
 
 import bean.User;
+import core.Status;
 import user.UserControl;
 
 /**
@@ -46,9 +47,9 @@ public class Login extends HttpServlet {
 			HttpSession session = request.getSession();
 			user.setFilePath(new HashMap<String, String>());
 			session.setAttribute("user", user);
-			obj.put("status", "ok");
+			obj.put("status",Status.SUCCESS);
 		} else {
-			obj.put("status", "error");
+			obj.put("status", Status.FAIL);
 		}
 		pw.println(obj);
 	}

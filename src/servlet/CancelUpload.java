@@ -16,6 +16,8 @@ import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 
+import core.Status;
+
 /**
  * Servlet implementation class CancelUpload
  */
@@ -56,7 +58,7 @@ public class CancelUpload extends HttpServlet {
 
 		System.out.println(filename + "has been deleted");
 
-		obj.put("status", "ok");
+		obj.put("status", Status.SUCCESS);
 		out.println(obj);
 	}
 }

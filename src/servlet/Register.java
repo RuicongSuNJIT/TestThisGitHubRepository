@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.json.JSONObject;
 
 import bean.User;
+import core.Status;
 import user.UserControl;
 
 /**
@@ -54,9 +55,12 @@ public class Register extends HttpServlet {
 				user.setFilePath(new HashMap<String, String>());
 				session.setAttribute("user", user);
 			}
-			obj.put("status", "success");
+			else {
+				obj.put("status", Status.ERROR);
+			}
+			obj.put("status", Status.SUCCESS);
 		} else {
-			obj.put("status", "duplicated");
+			obj.put("status", Status.FAIL);
 		}
 		pw.println(obj);
 	}
