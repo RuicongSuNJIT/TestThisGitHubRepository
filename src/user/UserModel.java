@@ -26,7 +26,7 @@ public class UserModel {
 			queryPasswordStat.setString(2, password);
 
 			rs = queryPasswordStat.executeQuery();
-			if (rs == null) {
+			if (!rs.next()) {
 				return null;
 			}
 			map.put(username, username);
@@ -46,7 +46,7 @@ public class UserModel {
 
 	public static boolean register(String username, String password, String email, String nickname) {
 		final String defaultAvatar = "/dinosaur/resource/avatar.jpg";
-		final String checkUsername = "select *from users where username=?";
+		final String checkUsername = "select username from users where username=?";
 		final String addUsersSQL = "insert into users(username,password,email,nickname,avatar) values (?,?,?,?,?)";// 20170318
 		PreparedStatement addUserStat = null;
 		PreparedStatement checkUsernameStat = null;
@@ -61,7 +61,7 @@ public class UserModel {
 			checkUsernameStat = conn.prepareStatement(checkUsername);
 			checkUsernameStat.setString(1, username);
 			rs = checkUsernameStat.executeQuery();
-			if (!rs.next()) {
+			if (rs.next()) {
 				return false;
 			}
 
@@ -110,4 +110,5 @@ public class UserModel {
 		}
 		return map;
 	}
+
 }

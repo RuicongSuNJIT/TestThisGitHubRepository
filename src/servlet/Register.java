@@ -1,11 +1,13 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONObject;
 
 import user.UserControl;
 
@@ -29,17 +31,22 @@ public class Register extends HttpServlet {
 	 *      response)
 	 */
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		response.setContentType("application/json;charset=utf-8");
+
+		PrintWriter pw = response.getWriter();
+		JSONObject obj = new JSONObject();
 		String username = request.getParameter("name");
-		String password = request.getParameter("password");
+		String password = request.getParameter("pass");
 		// String rePassword=request.getParameter("")
 		String email = request.getParameter("email");
 		// new comment 2017/03/18
-		String nickname = request.getParameter("nickname");
+		String nickname = request.getParameter("nick");
 
-		if (UserControl.register(username, password, email, nickname))
-			request.getRequestDispatcher("/success.jsp").forward(request, response);
-		else
-			request.getRequestDispatcher("/register.jsp").forward(request, response);
+		if (UserControl.register(username, password, email, nickname)) {
+			obj.put("status", "注册成功");
+		} else {
+			obj.put("status", "用户名已存在");
+		}
+		pw.println(obj);
 	}
 }

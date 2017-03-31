@@ -18,7 +18,6 @@ public class UserControl {
 	public static boolean register(String username, String password, String email, String nickname) {
 		return UserModel.register(username, password, email, nickname);
 	}
-
 	public static User getUser(String username) {
 		Map<String, String> map = UserModel.getUser(username);
 		String nickname = map.get("nickname");
