@@ -63,5 +63,6 @@ public class Register extends HttpServlet {
 			obj.put("status", Status.FAIL);
 		}
 		pw.println(obj);
+		
 	}
 }

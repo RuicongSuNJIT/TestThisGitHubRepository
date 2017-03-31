@@ -57,7 +57,7 @@ public class CancelUpload extends HttpServlet {
 		Files.delete(path);
 
 		System.out.println(filename + "has been deleted");
-
+//
 		obj.put("status", Status.SUCCESS);
 		out.println(obj);
 	}
