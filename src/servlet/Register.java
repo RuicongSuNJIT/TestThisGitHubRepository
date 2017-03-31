@@ -43,9 +43,9 @@ public class Register extends HttpServlet {
 		String nickname = request.getParameter("nick");
 
 		if (UserControl.register(username, password, email, nickname)) {
-			obj.put("status", "注册成功");
+			obj.put("status", "success");
 		} else {
-			obj.put("status", "用户名已存在");
+			obj.put("status", "this username has already exists");
 		}
 		pw.println(obj);
 	}
