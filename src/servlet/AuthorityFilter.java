@@ -8,6 +8,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -39,7 +40,8 @@ public class AuthorityFilter implements Filter {
 		// register,dispatch to login page
 		if (session.getAttribute("user") == null && !requestPath.endsWith(loginPage)
 				&& !requestPath.endsWith(registerPage)) {
-			request.getRequestDispatcher(loginPage).forward(request, response);
+			HttpServletResponse resp=(HttpServletResponse)response;
+			resp.sendRedirect("login.jsp");
 		}
 		// let it go
 		else {
