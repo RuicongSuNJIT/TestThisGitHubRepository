@@ -1,11 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 <%@include file="/common/head.jsp"%>
-<link href="<c:url value="/css/root/register.css"/>" type="text/css" rel="stylesheet" />
+<link href="<c:url value="/css/root/register.css"/>" type="text/css"
+	rel="stylesheet" />
 </head>
 <body>
 	<div align="center">
@@ -28,14 +30,25 @@
 	function toRegister() {
 		window.location.href = "register.jsp";
 	}
-	
+
 	function login() {
+		var name = $("#name")[0].value;
+		var pass = $("#pass")[0].value;
+		if (name == "") {
+			alert("Please enter username!");
+			return;
+		}
+		if (pass == "") {
+			alert("Please enter password!");
+			return;
+		}
+
 		$.ajax({
 			'url' : 'login',
 			'type' : 'post',
 			'data' : {
-				'name' : $("#name")[0].value,
-				'pass' : $("#pass")[0].value
+				'name' : name,
+				'pass' : pass
 			},
 			'dataType' : 'json',
 			'success' : function(returnData) {

@@ -16,13 +16,13 @@
 		</div>
 		<div class="form-content" style="width: 300px">
 			<form>
-				<input type="text" id="name" placeholder="Name" />
+				<input type="text" id="name" placeholder="Username" />
 				<br />
 				<input type="password" id="pass" placeholder="Password" />
 				<br />
 				<input type="password" id="conf" placeholder="Confirm password" />
 				<br />
-				<input type="text" id="nick" placeholder="Nick name" />
+				<input type="text" id="nick" placeholder="Nickname" />
 				<br />
 				<input type="text" id="email" placeholder="E-mail" />
 				<br />
@@ -35,22 +35,37 @@
 <%@include file="/common/js_include.jsp"%>
 <script type="text/javascript">
 	function register() {
+		var name = $("#name")[0].value;
 		var pass = $("#pass")[0].value;
 		var conf = $("#conf")[0].value;
-		
-		if(pass != conf){
+		var email = $("#email")[0].value;
+		if (name == "") {
+			alert("Username is necessary!");
+			return;
+		}
+		if (pass == "") {
+			alert("Password is necessary!");
+			return;
+		} else if (conf) {
+			alert("Confirm is necessary!");
+			return;
+		} else if (pass != conf) {
 			alert("Password and Confirm are not equal!");
 			return;
-		} 
-		
+		}
+		if (email == "") {
+			alert("E-mail is necessary!");
+			return;
+		}
+
 		$.ajax({
 			'url' : 'register',
 			'type' : 'post',
 			'data' : {
-				'name' : $("#name")[0].value,
+				'name' : name,
 				'pass' : pass,
 				'nick' : $("#nick")[0].value,
-				'email' : $("#email")[0].value
+				'email' : email
 			},
 			'dataType' : 'json',
 			'success' : function(returnData) {
