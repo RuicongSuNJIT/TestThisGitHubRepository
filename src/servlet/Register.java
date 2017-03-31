@@ -45,7 +45,7 @@ public class Register extends HttpServlet {
 		if (UserControl.register(username, password, email, nickname)) {
 			obj.put("status", "success");
 		} else {
-			obj.put("status", "this username has already exists");
+			obj.put("status", "duplicated");
 		}
 		pw.println(obj);
 	}
