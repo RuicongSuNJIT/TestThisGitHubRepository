@@ -28,7 +28,7 @@ public class ConnectionOperation {
 			return null;
 		}
 		if (conn != null)
-			System.out.printf("connect to db successfully:%nurl=%s", DBConstant.URL);
+			System.out.printf("connect to db successfully:%nurl=%s%n", DBConstant.URL);
 		return conn;
 	}
 
