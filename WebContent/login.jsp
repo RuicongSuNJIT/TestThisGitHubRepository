@@ -55,7 +55,7 @@
 				if (returnData['status'] == 'success') {
 					window.location.href = "index.jsp";
 				} else {
-					alert("Username is duplicated!");
+					alert("Username or password is wrong, please check and try again!");
 				}
 			}
 		});

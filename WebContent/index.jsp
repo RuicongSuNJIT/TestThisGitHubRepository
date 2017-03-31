@@ -13,7 +13,7 @@
 		<div class="main-content individual">
 			<div class="intro left">
 				<div class="intro-content">
-					<img class="avatar" src="<c:url value="/resource/Avatar.jpg"/>" />
+					<img class="avatar" src="${user.avatar}" />
 				</div>
 			</div>
 			<div class="comment left">

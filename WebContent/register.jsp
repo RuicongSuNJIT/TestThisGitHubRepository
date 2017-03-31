@@ -46,7 +46,7 @@
 		if (pass == "") {
 			alert("Password is necessary!");
 			return;
-		} else if (conf) {
+		} else if (conf == "") {
 			alert("Confirm is necessary!");
 			return;
 		} else if (pass != conf) {
