@@ -18,7 +18,7 @@
 			<input type="button" value="Submit" onclick="newComment()" />
 			<input id="open" type="button" value="Open" />
 			<input id="file" type="file" accept="image/*" style="display: none"
-				multiple="multiple" onchange="upload()" />
+				multiple="multiple" />
 		</form>
 	</div>
 	<div id="imageContainer" style="margin-top: 10px;"></div>
@@ -37,10 +37,13 @@
 			// the annotation
 			'type' : 'POST',
 			'dataType' : 'json',
+			'singleFileUploads' : false,
 			'done' : function(e, data) {
-				var a = 123;
-				alert(a);
-				alert(data.result.status);
+				var container = $("#imageContainer");
+				var files = data.result
+				for ( var i in files) {
+					container.append("<div>" + files[i].url + "</div>");
+				}
 			}
 		});
 
@@ -69,11 +72,17 @@
 	}
 
 	function newComment() {
+		var comment = $("#comment")[0].value;
+		if (comment == "") {
+			alert("You must have some to say, don't be so shy.");
+			return;
+		}
+
 		$.ajax({
 			'url' : 'newComment',
 			'type' : 'POST',
 			'data' : {
-				'comment' : $("#comment")[0].value
+				'comment' : comment
 			},
 			'dataType' : 'json',
 			'success' : function(data) {

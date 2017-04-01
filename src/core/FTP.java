@@ -10,27 +10,37 @@ import com.jcraft.jsch.Session;
 import com.jcraft.jsch.SftpException;
 
 public class FTP {
-	public static String upload(InputStream file, String fileName) {
+	private Session session;
+	private Channel channel;
+	private ChannelSftp sftp;
+
+	FTP() throws JSchException {
+		JSch jsch = new JSch();
+		session = jsch.getSession(Constants.FTP_USER, Constants.FTP_HOST, 22);
+		session.setConfig("PreferredAuthentications", "password");
+		session.setConfig("StrictHostKeyChecking", "no");
+		session.setPassword(Constants.FTP_PASS);
+		session.connect();
+		channel = session.openChannel("sftp");
+		sftp = (ChannelSftp) channel;
+		sftp.connect();
+	}
+
+	public void release() {
+		FTPPool.free(this);
+	}
+
+	void close() {
+		sftp.quit();
+		channel.disconnect();
+		session.disconnect();
+	}
+
+	public String upload(InputStream file, String fileName) {
 		try {
-			JSch jsch = new JSch();
-			Session session = jsch.getSession(Constants.FTP_USER, Constants.FTP_HOST, 22);
-			session.setConfig("PreferredAuthentications", "password");
-			session.setConfig("StrictHostKeyChecking", "no");
-			session.setPassword(Constants.FTP_PASS);
-			session.connect();
-			Channel channel = session.openChannel("sftp");
-			ChannelSftp sftp = (ChannelSftp) channel;
-			sftp.connect();
 			sftp.put(file, Constants.FTP_DIR + fileName);
-			sftp.quit();
-			channel.disconnect();
-			session.disconnect();
 			return Constants.FTP_BASEPATH + fileName;
-		} catch (JSchException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SftpException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
