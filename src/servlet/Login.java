@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,7 +24,7 @@ import user.UserControl;
 @WebServlet("/login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private static final int cookieMaxAge=60*60;
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -42,7 +43,13 @@ public class Login extends HttpServlet {
 		String password = request.getParameter("pass");
 		User user;
 
+				
 		if ((user = UserControl.login(username, password)) != null) {
+			//add cookie
+			Cookie cid=new Cookie("id", user.getId());
+			cid.setMaxAge(cookieMaxAge);
+			response.addCookie(cid);
+			
 			// get session instance
 			HttpSession session = request.getSession();
 			user.setFilePath(new HashMap<String, String>());

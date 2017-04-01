@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.User;
+
 /**
  * Servlet Filter implementation class Test
  */
@@ -38,6 +40,12 @@ public class AuthorityFilter implements Filter {
 		String requestPath = req.getServletPath();
 		// if the user did not login and request path is neither login nor
 		// register,dispatch to login page
+		User user=null;
+		if(user==null){
+			if((user=CookieOperation.check(req))!=null){
+				session.setAttribute("user", user);
+			}
+		}
 		if (session.getAttribute("user") == null && !requestPath.endsWith(loginPage)
 				&& !requestPath.endsWith(registerPage)) {
 			HttpServletResponse resp = (HttpServletResponse) response;
