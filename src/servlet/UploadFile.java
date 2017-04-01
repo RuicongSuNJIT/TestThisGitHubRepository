@@ -17,8 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import bean.User;
+import core.FTP;
 
 /**
  * Servlet implementation class test
@@ -47,7 +49,7 @@ public class UploadFile extends HttpServlet {
 		JSONArray arr = new JSONArray();
 		User user = (User) request.getSession().getAttribute("user");
 		Map<String, String> filePath = user.getFilePath();
-
+		
 		// Use this segment to get the files.
 		Collection<Part> files = request.getParts();
 
@@ -66,16 +68,14 @@ public class UploadFile extends HttpServlet {
 			String ext = str.substring(str.lastIndexOf("."), str.length());
 
 			// the filename is combination of timeStamp and file type
-			String filename = SavingFolder.toString() + File.separator
-					+ new SimpleDateFormat("yyyymmddhhmmss").format(new Date())
+			String filename = new SimpleDateFormat("yyyymmddhhmmss").format(new Date())
 					+ Long.toString(System.currentTimeMillis()) + ext;
 
-			// write the file into server disk
-			file.write(filename);
-			System.out.println(file.getSubmittedFileName() + "\nsaved as:" + filename);
-
+			// write the file into afs
+			String fileURL=FTP.upload(file.getInputStream(), filename);
 			// set the filename
-			arr.put(filename);
+			JSONObject aFile = new JSONObject("{\"name\": \""+filename+"\", \"url\":"+fileURL+"\"}");
+			arr.put(aFile);
 			filePath.put(file.getSubmittedFileName(), filename);
 		}
 

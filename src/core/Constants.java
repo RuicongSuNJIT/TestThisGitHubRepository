@@ -8,4 +8,6 @@ public class Constants {
 	public static int FTP_PORT = 22;
 	public static String FTP_BASEPATH = "https://web.njit.edu/~rs843/";	
 	public static String DEFAULT_AVATAR = FTP_BASEPATH + "Avatar.jpg";
+	
+	
 }
