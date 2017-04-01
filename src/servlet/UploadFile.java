@@ -74,7 +74,7 @@ public class UploadFile extends HttpServlet {
 			// write the file into afs
 			String fileURL=FTP.upload(file.getInputStream(), filename);
 			// set the filename
-			JSONObject aFile = new JSONObject("{\"name\": \""+filename+"\", \"url\":"+fileURL+"\"}");
+			JSONObject aFile = new JSONObject("{\"name\": \""+filename+"\", \"url\":\""+fileURL+"\"}");
 			arr.put(aFile);
 			filePath.put(file.getSubmittedFileName(), filename);
 		}
