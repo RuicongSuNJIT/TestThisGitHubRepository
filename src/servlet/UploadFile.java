@@ -21,6 +21,7 @@ import org.json.JSONObject;
 
 import bean.User;
 import core.FTP;
+import core.FTPPool;
 
 /**
  * Servlet implementation class test
@@ -60,6 +61,7 @@ public class UploadFile extends HttpServlet {
 			SavingFolder.mkdirs();
 		}
 		// traverse each part and write it into disk
+		FTP ftp=FTPPool.getFTP();
 		for (Part file : files) {
 			// get the submitted file name
 			String str = file.getSubmittedFileName();
@@ -72,12 +74,14 @@ public class UploadFile extends HttpServlet {
 					+ Long.toString(System.currentTimeMillis()) + ext;
 
 			// write the file into afs
-			String fileURL=FTP.upload(file.getInputStream(), filename);
+			String fileURL=ftp.upload(file.getInputStream(), filename);
+			
 			// set the filename
 			JSONObject aFile = new JSONObject("{\"name\": \""+filename+"\", \"url\":\""+fileURL+"\"}");
 			arr.put(aFile);
 			filePath.put(file.getSubmittedFileName(), filename);
 		}
+		ftp.release();
 
 		user.setFilePath(filePath);
 		// return an array of filename
