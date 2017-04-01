@@ -11,7 +11,7 @@ import connection.ConnectionOperation;
 
 public class UserModel {
 	public static Map<String, String> login(String username, String password) {
-		final String QueryPassword = "select nickname,avatar from users where username=? and password=?";
+		final String QueryPassword = "select nickname,avatar,id from users where username=? and password=?";
 		PreparedStatement queryPasswordStat = null;
 		Map<String, String> map = new HashMap<>();
 
@@ -32,6 +32,7 @@ public class UserModel {
 			map.put(username, username);
 			map.put("nickname", rs.getString("nickname"));
 			map.put("avatar", rs.getString("avatar"));
+			map.put("id", String.valueOf(rs.getInt("id")));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -82,7 +83,7 @@ public class UserModel {
 
 	public static Map<String, String> getUser(String username) {
 		// TODO Auto-generated method stub
-		final String getSessionQuery = "select nickname,avatar from users where username=?";
+		final String getSessionQuery = "select nickname,avatar,id from users where username=?";
 		PreparedStatement queryStat = null;
 
 		Map<String, String> map = new HashMap<>();
@@ -98,6 +99,40 @@ public class UserModel {
 			map.put(username, username);
 			map.put("nickname", rs.getString("nickname"));
 			map.put("avatar", rs.getString("avatar"));
+			map.put("id", String.valueOf(rs.getInt("id")));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return map;
+	}
+	
+	public static Map<String, String> getUserbyId(int id) {
+		// TODO Auto-generated method stub
+		
+		final String getSessionQuery = "select username,nickname,avatar,id from users where id=?";
+		PreparedStatement queryStat = null;
+
+		Map<String, String> map = new HashMap<>();
+		Connection conn = null;
+		ResultSet rs = null;
+		conn = ConnectionOperation.getConnection();
+		if (conn == null)
+			return map;
+		try {
+			queryStat = conn.prepareStatement(getSessionQuery);
+			queryStat.setInt(1, id);
+			rs = queryStat.executeQuery();
+			map.put("username", rs.getString("username"));
+			map.put("nickname", rs.getString("nickname"));
+			map.put("avatar", rs.getString("avatar"));
+			map.put("id", String.valueOf(rs.getInt("id")));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

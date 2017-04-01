@@ -46,12 +46,9 @@ public class Login extends HttpServlet {
 				
 		if ((user = UserControl.login(username, password)) != null) {
 			//add cookie
-			Cookie cname=new Cookie("name", username);
-			Cookie cpass=new Cookie("pass",password);
-			cname.setMaxAge(cookieMaxAge);
-			cpass.setMaxAge(cookieMaxAge);
-			response.addCookie(cname);
-			response.addCookie(cpass);
+			Cookie cid=new Cookie("id", user.getId());
+			cid.setMaxAge(cookieMaxAge);
+			response.addCookie(cid);
 			
 			// get session instance
 			HttpSession session = request.getSession();

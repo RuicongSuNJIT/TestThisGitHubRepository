@@ -5,7 +5,7 @@ import java.util.Map;
 public class User {
 	private String username;
 	private String nickname;
-	private int id;
+	private String id;
 	private String avatar;
 	private Map<String, String> filePath;
 
@@ -13,8 +13,9 @@ public class User {
 		super();
 	}
 
-	public User(String username, String nickname, String avatar) {
+	public User(String username, String nickname, String avatar,String id) {
 		super();
+		this.id=id;
 		this.username = username;
 		this.nickname = nickname;
 		this.avatar = avatar;
@@ -36,11 +37,11 @@ public class User {
 		this.nickname = nickname;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

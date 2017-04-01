@@ -12,7 +12,8 @@ public class UserControl {
 		}
 		String nickname = map.get("nickname");
 		String avatar = map.get("avatar");
-		return new User(username, nickname, avatar);
+		String id=map.get("id");
+		return new User(username, nickname, avatar,id);
 	}
 
 	public static boolean register(String username, String password, String email, String nickname) {
@@ -22,7 +23,18 @@ public class UserControl {
 		Map<String, String> map = UserModel.getUser(username);
 		String nickname = map.get("nickname");
 		String avatar = map.get("avatar");
-		return new User(username, nickname, avatar);
-
+		String id=map.get("id");
+		return new User(username, nickname, avatar,id);
+	}
+	public static User getUserById(String id){
+		int id_int=Integer.parseInt(id);
+		Map<String, String> map = UserModel.getUserbyId(id_int);
+		if (map == null) {
+			return null;
+		}
+		String nickname = map.get("nickname");
+		String avatar = map.get("avatar");
+		String username=map.get("username");
+		return new User(username, nickname, avatar,id);
 	}
 }
