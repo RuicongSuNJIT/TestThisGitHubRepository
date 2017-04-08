@@ -96,6 +96,9 @@ public class UserModel {
 			queryStat = conn.prepareStatement(getSessionQuery);
 			queryStat.setString(1, username);
 			rs = queryStat.executeQuery();
+			if (!rs.next()) {
+				return null;
+			}
 			map.put(username, username);
 			map.put("nickname", rs.getString("nickname"));
 			map.put("avatar", rs.getString("avatar"));
@@ -129,6 +132,9 @@ public class UserModel {
 			queryStat = conn.prepareStatement(getSessionQuery);
 			queryStat.setInt(1, id);
 			rs = queryStat.executeQuery();
+			if (!rs.next()) {
+				return null;
+			}
 			map.put("username", rs.getString("username"));
 			map.put("nickname", rs.getString("nickname"));
 			map.put("avatar", rs.getString("avatar"));
