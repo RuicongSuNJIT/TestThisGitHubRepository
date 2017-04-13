@@ -78,7 +78,7 @@
 		*/
 	}
 
-	function newMomment() {
+	function newMoment() {
 		var content = $("#content")[0].value;
 		if (content == "") {
 			alert("You must have some to say, don't be so shy.");
