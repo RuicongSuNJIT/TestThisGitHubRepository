@@ -20,7 +20,7 @@ public class CookieOperation {
 			}
 		}
 		if(id!=null){
-			user=UserControl.getUserById(id);
+			user=UserControl.loginById(id);
 		}
 		return user;
 		
