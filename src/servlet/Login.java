@@ -2,8 +2,6 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -52,7 +50,6 @@ public class Login extends HttpServlet {
 			
 			// get session instance
 			HttpSession session = request.getSession();
-			user.setFilePath(new HashMap<String, String>());
 			session.setAttribute("user", user);
 			obj.put("status",Status.SUCCESS);
 		} else {

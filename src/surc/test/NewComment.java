@@ -35,7 +35,7 @@ public class NewComment extends HttpServlet {
 		// To submit the comment, you need to load the comment content by a
 		// parameter name "comment" first. Additionally, you need to add all the
 		// files into database as well, which still remain in session.
-
+		
 		PrintWriter out = response.getWriter();
 		out.println("{\"status\":\"ok\"}");
 	}
