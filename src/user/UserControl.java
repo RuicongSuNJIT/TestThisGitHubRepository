@@ -1,9 +1,11 @@
 package user;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import bean.User;
 
 public class UserControl {
+
 	public static User login(String username, String password) {
 		User user = UserModel.login(username, password);
 		if (user == null) {
@@ -32,4 +34,6 @@ public class UserControl {
 		}
 		return user;
 	}
+
+	
 }

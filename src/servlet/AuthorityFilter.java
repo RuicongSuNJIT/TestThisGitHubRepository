@@ -49,6 +49,7 @@ public class AuthorityFilter implements Filter {
 				HttpServletResponse resp = (HttpServletResponse) response;
 				resp.sendRedirect("login.jsp");
 			}else{
+				session.setAttribute("user", user);
 				chain.doFilter(request, response);
 			}
 		} else {

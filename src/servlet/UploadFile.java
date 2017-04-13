@@ -63,15 +63,13 @@ public class UploadFile extends HttpServlet {
 		// traverse each part and write it into disk
 		FTP ftp=FTPPool.getFTP();
 		for (Part file : files) {
-			// get the submitted file name
-			String str = file.getSubmittedFileName();
 
 			// get the extensive name of upload files
-			String ext = str.substring(str.lastIndexOf("."), str.length());
+			String ext = file.getSubmittedFileName().split("\\.")[1];
 
 			// the filename is combination of timeStamp and file type
 			String filename = new SimpleDateFormat("yyyymmddhhmmss").format(new Date())
-					+ Long.toString(System.currentTimeMillis()) + ext;
+					+ Long.toString(System.currentTimeMillis()) + "."+ext;
 
 			// write the file into afs
 			String fileURL=ftp.upload(file.getInputStream(), filename);
@@ -79,7 +77,7 @@ public class UploadFile extends HttpServlet {
 			// set the filename
 			JSONObject aFile = new JSONObject("{\"name\": \""+filename+"\", \"url\":\""+fileURL+"\"}");
 			arr.put(aFile);
-			filePath.put(file.getSubmittedFileName(), filename);
+			filePath.put(filename, fileURL);
 		}
 		ftp.release();
 
