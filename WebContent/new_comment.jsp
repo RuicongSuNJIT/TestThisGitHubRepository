@@ -13,7 +13,8 @@
 	<%@include file="/common/top.jsp"%>
 	<div style="margin-left: 10px; margin-top: 10px;">
 		<form>
-			<input id="comment" type="text" style="width: 900px; height: 400px;" />
+			<textarea id="comment"
+				style="width: 900px; height: 400px; resize: none;"></textarea>
 			<br />
 			<input type="button" value="Submit" onclick="newComment()" />
 			<input id="open" type="button" value="Open" />
@@ -41,28 +42,32 @@
 			'done' : function(e, data) {
 				var container = $("#imageContainer");
 				var files = data.result
+				var div;
 				for ( var i in files) {
-					container.append("<div>" + files[i].url + "</div>");
+					div = getDeletable(files[i].name, files[i].url);
+					$("#imageContainer").append(div);
 				}
 			}
 		});
-
-		var div = Template.getImageDiv(true);
-		var image = Template
-				.getImageImg('<c:url value="/resource/Avatar.jpg"/>');
-		var del = Template.getImageDel('<c:url value="/resource/Delete.png"/>',
-				'Avatar.jpg');
-		div.append(image);
-		div.append(del);
 	});
 
-	function deleteImage(image) {
-		var imageDiv = $(image).parent('div')[0];
+	function getDeletable(name, url) {
+		var div = Template.getImageDiv(true);
+		var image = Template.getImageImg(url);
+		var del = Template.getImageDel('<c:url value="/resource/Delete.png"/>',
+				name, deleteImage);
+		div.append(image);
+		div.append(del);
+		return div;
+	}
+
+	function deleteImage() {
+		alert($(this).attr('del'));
 		$.ajax({
 			'url' : 'cancelUpload',
 			'type' : 'POST',
 			'data' : {
-				'name' : image.name
+				'name' : $(this).attr('del')
 			},
 			'dataType' : 'json',
 			'success' : function(data) {
