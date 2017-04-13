@@ -13,10 +13,10 @@
 	<%@include file="/common/top.jsp"%>
 	<div style="margin-left: 10px; margin-top: 10px;">
 		<form>
-			<textarea id="comment"
+			<textarea id="moment"
 				style="width: 900px; height: 400px; resize: none;"></textarea>
 			<br />
-			<input type="button" value="Submit" onclick="newComment()" />
+			<input type="button" value="Submit" onclick="newMoment()" />
 			<input id="open" type="button" value="Open" />
 			<input id="file" type="file" accept="image/*" style="display: none"
 				multiple="multiple" />
@@ -62,7 +62,8 @@
 	}
 
 	function deleteImage() {
-		alert($(this).attr('del'));
+		$(this).parent().remove();
+		/*
 		$.ajax({
 			'url' : 'cancelUpload',
 			'type' : 'POST',
@@ -74,6 +75,7 @@
 				alert(data.status);
 			}
 		});
+		*/
 	}
 
 	function newComment() {
@@ -84,7 +86,7 @@
 		}
 
 		$.ajax({
-			'url' : 'newComment',
+			'url' : 'newMoment',
 			'type' : 'POST',
 			'data' : {
 				'comment' : comment

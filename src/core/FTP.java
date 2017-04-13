@@ -45,4 +45,18 @@ public class FTP {
 		}
 		return null;
 	}
+	
+	public StatusE remove(String fileName){
+		try {
+			sftp.rm(Constants.FTP_DIR + fileName);
+			return StatusE.SUCCESS;
+		} catch (SftpException e) {
+			if(e.id == 2){
+				return StatusE.NO_SUCH_FILE;
+			} else {
+				e.printStackTrace();
+			}
+			return StatusE.ERROR;
+		}
+	}
 }

@@ -27,12 +27,12 @@ public class FTPPool {
 		return ftp;
 	}
 
-	static synchronized void free(FTP ftp) {
+	static void free(FTP ftp) {
 		used.remove(ftp);
-		pool.add(ftp);
+		pool.push(ftp);
 	}
-	
-	public static int length(){
+
+	public static int length() {
 		return pool.size();
 	}
 }

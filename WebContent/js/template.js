@@ -15,18 +15,19 @@ Template.getImageDiv = function(allowDelete) {
 	} else {
 		div = $('<div class="image-element"></div>');
 	}
-	return div[0];
+	return div;
 }
 
 Template.getImageImg = function(url) {
-	var img = $('<img class="shortcut-image" src="" />')[0];
-	img.src = url;
+	var img = $('<img class="shortcut-image" src="" />');
+	img.attr('src', url);
 	return img;
 }
 
-Template.getImageDel = function(url, name) {
-	var img = $('<img class="delete" name="" src="" onclick="deleteImage(this)" />')[0];
-	img.src = url;
-	img.name = name;
+Template.getImageDel = function(url, targetName, deleteFunc) {
+	var img = $('<img class="delete" />');
+	img.click(deleteFunc);
+	img.attr('src', url);
+	img.attr('del', targetName);
 	return img;
 }
