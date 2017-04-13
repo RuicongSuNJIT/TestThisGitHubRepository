@@ -42,7 +42,7 @@ public class AuthorityFilter implements Filter {
 		// register,dispatch to login page
 		User user;
 		user = (User) session.getAttribute("user");
-		if (user == null && !requestPath.endsWith(loginPage) && requestPath.endsWith(registerPage)) {
+		if (user == null && !requestPath.endsWith(loginPage) && !requestPath.endsWith(registerPage)) {
 			// check cookie,if have,return user,if no,sendredirect
 			user = CookieOperation.check(req);
 			if (user == null) {
