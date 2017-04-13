@@ -13,7 +13,7 @@
 	<%@include file="/common/top.jsp"%>
 	<div style="margin-left: 10px; margin-top: 10px;">
 		<form>
-			<textarea id="moment"
+			<textarea id="content"
 				style="width: 900px; height: 400px; resize: none;"></textarea>
 			<br />
 			<input type="button" value="Submit" onclick="newMoment()" />
@@ -78,9 +78,9 @@
 		*/
 	}
 
-	function newComment() {
-		var comment = $("#comment")[0].value;
-		if (comment == "") {
+	function newMomment() {
+		var content = $("#content")[0].value;
+		if (content == "") {
 			alert("You must have some to say, don't be so shy.");
 			return;
 		}
@@ -89,7 +89,7 @@
 			'url' : 'newMoment',
 			'type' : 'POST',
 			'data' : {
-				'comment' : comment
+				'content' : content
 			},
 			'dataType' : 'json',
 			'success' : function(data) {
