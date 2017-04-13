@@ -48,6 +48,8 @@ public class AuthorityFilter implements Filter {
 			if (user == null) {
 				HttpServletResponse resp = (HttpServletResponse) response;
 				resp.sendRedirect("login.jsp");
+			}else{
+				chain.doFilter(request, response);
 			}
 		} else {
 			chain.doFilter(request, response);
