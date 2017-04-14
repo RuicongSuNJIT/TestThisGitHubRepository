@@ -2,6 +2,8 @@ package moment;
 
 import java.util.ArrayList;
 
+import bean.Moment;
+
 public class MomentControl {
 
 	public static boolean addMoment(String userId, String text, ArrayList<String> filePaths) {
@@ -15,6 +17,10 @@ public class MomentControl {
 			}
 		}
 		return true;
+	}
+
+	public static ArrayList<Moment> getMomentsByUserId(String userId,int page) {
+		return MomentModel.getMomentsByUserId(Integer.parseInt(userId),page);
 	}
 
 }
