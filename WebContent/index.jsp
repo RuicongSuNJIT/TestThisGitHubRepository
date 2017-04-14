@@ -23,9 +23,6 @@
 						<img class="new" src="<c:url value="/resource/New.png"/>" />
 					</a>
 					<ul class="comment-list no-mark">
-						<li class="comment-item" id="1">
-							abc<br /> def<br />
-						</li>
 					</ul>
 					<button id="loadmore" onclick="loadMore()">Load More...</button>
 				</div>
