@@ -39,7 +39,7 @@ Template.getMomentLi = function(memont) {
 	var imageContainer = $('<div class="image-container"></div>');
 	li.append(imageContainer);
 	var img;
-	var images = memont.images;
+	var images = memont.files;
 	var length = images.length;
 	for (var i = 0; i < length; ++i) {
 		img = $('<img class="image" src="' + images[i] + '"/>');

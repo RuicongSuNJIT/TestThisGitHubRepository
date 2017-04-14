@@ -27,6 +27,7 @@
 							abc<br /> def<br />
 						</li>
 					</ul>
+					<button id="loadmore">Load More...</button>
 				</div>
 			</div>
 		</div>
@@ -34,7 +35,7 @@
 </body>
 <%@include file="/common/js_include.jsp"%>
 <script type="text/javascript">
-	var page = 1;
+	var page = 0;
 	$.ajax({
 		'type' : 'post',
 		'url' : 'showMoment',
@@ -47,10 +48,12 @@
 			var li;
 			var ul = $('ul');
 			for (var i = 0; i < length; ++i) {
-				li = $('<li>' + result[i].text + '</li>');
-
-				//li = Template.getMomentLi(result[i]);
+				li = Template.getMomentLi(result[i]);
 				ul.append(li);
+			}
+			++page;
+			if(length < 10){
+				$('#loadmore').attr('disabled', 'disabled');
 			}
 		}
 	});
