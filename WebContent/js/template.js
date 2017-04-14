@@ -31,3 +31,19 @@ Template.getImageDel = function(url, targetName, deleteFunc) {
 	img.attr('del', targetName);
 	return img;
 }
+
+Template.getMomentLi = function(memont) {
+	var li = $('<li class="comment-item"></li>');
+	var textDiv = $('<div class="text">' + memont.text + '</div>');
+	li.append(textDiv);
+	var imageContainer = $('<div class="image-container"></div>');
+	li.append(imageContainer);
+	var img;
+	var images = memont.images;
+	var length = images.length;
+	for (var i = 0; i < length; ++i) {
+		img = $('<img class="image" src="' + images[i] + '"/>');
+		imageContainer.append(img);
+	}
+	return li;
+}

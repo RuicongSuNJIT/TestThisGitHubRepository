@@ -34,23 +34,25 @@
 </body>
 <%@include file="/common/js_include.jsp"%>
 <script type="text/javascript">
-	function toRegister() {
-		window.location.href = "register.jsp";
-	}
+	var page = 1;
+	$.ajax({
+		'type' : 'post',
+		'url' : 'showMoment',
+		'data' : {
+			'page' : page
+		},
+		'dataType' : 'json',
+		'success' : function(result) {
+			var length = result.length;
+			var li;
+			var ul = $('ul');
+			for (var i = 0; i < length; ++i) {
+				li = $('<li>' + result[i].text + '</li>');
 
-	function login() {
-		$.ajax({
-			'url' : 'login',
-			'type' : 'post',
-			'data' : {
-				'name' : $("#name")[0].value,
-				'pass' : $("#pass")[0].value
-			},
-			'dataType' : 'json',
-			'success' : function(returnData) {
-				alert(returnData['status']);
+				//li = Template.getMomentLi(result[i]);
+				ul.append(li);
 			}
-		});
-	}
+		}
+	});
 </script>
 </html>
