@@ -35,6 +35,7 @@
 <script type="text/javascript">
 	var page = 0;
 	$(function() {
+		$('#loadmore').removeAttr('disabled');
 		loadMore();
 	});
 
