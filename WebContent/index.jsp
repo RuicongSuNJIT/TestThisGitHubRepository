@@ -34,6 +34,7 @@
 	</div>
 </body>
 <%@include file="/common/js_include.jsp"%>
+<script src="<c:url value="/js/template.js"/>"></script>
 <script type="text/javascript">
 	var page = 0;
 	$.ajax({
