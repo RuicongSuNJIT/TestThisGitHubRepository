@@ -1,4 +1,4 @@
-package surc.test;
+package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,14 +20,14 @@ import user.UserControl;
 /**
  * Servlet implementation class NewComment
  */
-@WebServlet("/example3")
-public class NewComment extends HttpServlet {
+@WebServlet("/newMoment")
+public class NewMoment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public NewComment() {
+	public NewMoment() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -50,12 +50,13 @@ public class NewComment extends HttpServlet {
 		for(String value:user.getFilePath().values()){
 			filePaths.add(value);
 		}
-		String text=request.getParameter("comment");		
+		String text=request.getParameter("content");		
 		if(MomentControl.addMoment(user.getId(),text,filePaths)){
 			obj.put("status", "ok");
 		}else{
 			obj.put("status", "failed");
 		}
+		user.getFilePath().clear();
 		out.println(obj);
 	}
 }

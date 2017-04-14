@@ -29,11 +29,10 @@ public class UserControl {
 
 	public static User loginById(String id) {
 		User user = getUserById(id);
-		if(user != null){
+		if (user != null) {
 			user.setFilePath(new HashMap<>());
 		}
 		return user;
 	}
 
-	
 }
