@@ -21,6 +21,7 @@
 				<input type="password" id="pass" placeholder="Password" />
 				<br />
 				<input type="button" value="Log In" onclick="login()" />
+				<input type="button" value="Register" onclick="toRegister()" />
 			</form>
 		</div>
 	</div>
