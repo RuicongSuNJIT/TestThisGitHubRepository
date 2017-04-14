@@ -94,6 +94,8 @@
 			'dataType' : 'json',
 			'success' : function(data) {
 				alert(data.status);
+				$(".image-element").remove();
+				content.value = '';
 			}
 		});
 	}
