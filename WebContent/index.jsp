@@ -27,7 +27,7 @@
 							abc<br /> def<br />
 						</li>
 					</ul>
-					<button id="loadmore">Load More...</button>
+					<button id="loadmore" onclick="loadMore()">Load More...</button>
 				</div>
 			</div>
 		</div>
@@ -37,26 +37,32 @@
 <script src="<c:url value="/js/template.js"/>"></script>
 <script type="text/javascript">
 	var page = 0;
-	$.ajax({
-		'type' : 'post',
-		'url' : 'showMoment',
-		'data' : {
-			'page' : page
-		},
-		'dataType' : 'json',
-		'success' : function(result) {
-			var length = result.length;
-			var li;
-			var ul = $('ul');
-			for (var i = 0; i < length; ++i) {
-				li = Template.getMomentLi(result[i]);
-				ul.append(li);
-			}
-			++page;
-			if(length < 10){
-				$('#loadmore').attr('disabled', 'disabled');
-			}
-		}
+	$(function() {
+		loadMore();
 	});
+
+	function loadMore() {
+		$.ajax({
+			'type' : 'post',
+			'url' : 'showMoment',
+			'data' : {
+				'page' : page
+			},
+			'dataType' : 'json',
+			'success' : function(result) {
+				var length = result.length;
+				var li;
+				var ul = $('ul');
+				for (var i = 0; i < length; ++i) {
+					li = Template.getMomentLi(result[i]);
+					ul.append(li);
+				}
+				++page;
+				if (length < 10) {
+					$('#loadmore').attr('disabled', 'disabled');
+				}
+			}
+		});
+	}
 </script>
 </html>
