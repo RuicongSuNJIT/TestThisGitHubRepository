@@ -34,6 +34,7 @@ public class ShowMoment extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("application/json;charset=utf-8");
 		JSONArray arr = new JSONArray();
 		User user = (User) req.getSession().getAttribute("user");
 		String userId = user.getId();
